@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produkty{% endblock %}
+
+{% block body %}
+
+    <div class="example-wrapper">
+        <h1>Produkty</h1>
+
+        {% if products %}
+            <form id="addToBasket" action="/addToBasket" method="post">
+                {% for key, product in products %}
+
+                    <div class="form-group row">
+
+                        <input type="hidden" name="name" value="{{ product }}">
+                        <label for="colFormLabelLg"
+                               class="col-sm-2 col-form-label col-form-label-md">{{ product }}</label>
+                        <div class="col-sm-2">
+                            <input type="number" name="quantity" class="form-control form-control-md"
+                                   placeholder="Ilość">
+                        </div>
+
+                        <button href="#" class="btn btn-dark addToBasket">Dodaj do koszyka</button>
+                    </div>
+
+                {% endfor %}
+
+            </form>
+        {% else %}
+            <p>Twój koszyk jest pusty</p>
+        {% endif %}
+
+    </div>
+{% endblock %}
