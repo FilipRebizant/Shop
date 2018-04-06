@@ -13,6 +13,7 @@ $(document).ready(function () {
 
         }).done(function (data) {
             $('.info').text(data);
+            $quantity.val('');
 
         }).fail(function (data) {
             console.log('error');
@@ -38,6 +39,8 @@ $(document).ready(function () {
             if (data.newQuantity <= 0 ){
                 $this.closest('.row').fadeOut();
             }
+            $quantity.val('');
+
         }).fail(function (data) {
             console.log('error');
             console.log(data);
