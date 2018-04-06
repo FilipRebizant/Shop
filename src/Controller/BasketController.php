@@ -69,11 +69,13 @@ class BasketController extends Controller
             foreach ($currentProducts as $key => $product) {
                 if ($product->getName() == $productName) {
                     $newQuantity = (intval($product->getQuantity()) - intval($quantity));
-                    if ($newQuantity >= 0) {
-                    } else {
+                    if ($newQuantity <= 0) {
                         $newQuantity = 0;
+                        unset($currentProducts[$key]);
+                        $session->clear();
                     }
                     $product->setQuantity($newQuantity);
+                    $session->set('products', $currentProducts);
 
                     return new JsonResponse([
                         'info' => 'Usunięto z koszyka',

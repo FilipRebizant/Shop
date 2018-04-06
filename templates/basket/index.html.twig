@@ -8,39 +8,28 @@
         <h1>Koszyk</h1>
 
         {% if products %}
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <form action="/removeFromBasket" method="post">
-                    {% for product in products %}
-                        {% if(product.getQuantity() > 0) %}
-                            <div class="form-group row">
-                                <input type="hidden" name="name" value="{{ product.getName() }}">
-                                <label for="colFormLabelLg"
-                                       class="col-sm-2 col-form-label col-form-label-md">{{ product.getName() }}</label>
 
-                                <div class="col-sm-2">
-                                    <p>W koszyku: <span class="amount">{{ product.getQuantity() }}</span></p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <input type="number" name="quantity" class="form-control form-control-md"
-                                           placeholder="Ilość do usunięcia">
-                                </div>
+            <form action="/removeFromBasket" method="post">
+                {% for product in products %}
+                    <div class="form-group row">
+                        <input type="hidden" name="name" value="{{ product.getName() }}">
+                        <label for="colFormLabelLg"
+                               class="col-sm-2 col-form-label col-form-label-md">{{ product.getName() }}</label>
 
-                                <a href="#" class="btn btn-dark removeFromBasket">Usuń z koszyka</a>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                        <div class="col-sm-2">
+                            <p>W koszyku: <span class="amount">{{ product.getQuantity() }}</span></p>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="number" name="quantity" class="form-control form-control-md"
+                                   placeholder="Ilość do usunięcia">
+                        </div>
 
-                </form>
-                </tbody>
+                        <a href="#" class="btn btn-dark removeFromBasket">Usuń z koszyka</a>
+                    </div>
+                {% endfor %}
 
-            </table>
+            </form>
+
 
         {% else %}
             <p>Twój koszyk jest pusty</p>
